@@ -33,9 +33,9 @@ public class CarUtils {
             String brand = BRANDS[random.nextInt(BRANDS.length)];
             String model = MODELS[random.nextInt(MODELS.length)];
             CarClass carClass = classes[random.nextInt(classes.length)];
-            // Цена случайно от 30_000 до 2_000_000
+
             double price = 30_000 + random.nextDouble() * 1_970_000;
-            // Мощность случайно от 200 до 1000 л.с.
+
             int horsepower = 200 + random.nextInt(800);
 
             cars.add(new SportCar(brand, model, carClass, price, horsepower));

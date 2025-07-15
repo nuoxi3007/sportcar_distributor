@@ -18,6 +18,10 @@ public class SportCar {
     }
 
 
+    public String toShortString() {
+        return String.format("%s %s — $%,.2f (%s)", manufacturer, model, price, segment);
+    }
+
     public String getManufacturer() {
         return manufacturer;
     }

@@ -19,4 +19,14 @@ public class DistributionService {
             }
         }
     }
+
+    public void printFullReport(List<SportCar> cars) {
+        System.out.println("=== Отчёт по автопарку ===");
+        for (SportCar car : cars) {
+            System.out.printf("%s %s — %s, $%,.2f, %d л.с.%n",
+                    car.getManufacturer(), car.getModel(),
+                    car.getSegment(), car.getPrice(), car.getHorsepower());
+        }
+    }
+
 }

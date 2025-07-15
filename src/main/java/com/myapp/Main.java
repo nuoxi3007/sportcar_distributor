@@ -5,11 +5,13 @@ import model.SportCar;
 import model.Segment;
 import service.CarFilterService;
 import service.DistributionService;
+import util.CarUtils;
+
 
 import java.util.List;
 
 /**
- * ЗАДАЧА:  Разработать систему  управления автопарком спорткаров дилерского центра
+ * ЗАДАЧА:Разработать систему управления автопарком спорткаров дилерского центра
  * Функционал:
  * 1. Учет автомобилей с характеристиками:
  *    - Производитель и модель
@@ -27,16 +29,9 @@ import java.util.List;
  *    - Отфильтрованные подборки
  */
 
-
 public class Main {
     public static void main(String[] args) {
-        SportCar car1 = new SportCar("Ferrari", "488 GTB", CarClass.SPORT, 250000, 660);
-        SportCar car2 = new SportCar("Lamborghini", "Aventador", CarClass.HYPERCAR, 500000, 700);
-        SportCar car3 = new SportCar("Toyota", "Supra", CarClass.SPORT, 60000, 335);
-        SportCar car4 = new SportCar("Porsche", "911 GT3", CarClass.TRACK, 150000, 500);
-        SportCar car5 = new SportCar("Ford", "Mustang", CarClass.CLASSIC, 55000, 450);
-
-        List<SportCar> cars = List.of(car1, car2, car3, car4, car5);
+        List<SportCar> cars = CarUtils.generateRandomCars(10);
 
         DistributionService distributionService = new DistributionService();
         distributionService.assignSegments(cars);
@@ -44,17 +39,63 @@ public class Main {
         CarFilterService filterService = new CarFilterService();
         List<SportCar> sportCars = filterService.filterByClass(cars, CarClass.SPORT);
 
-
         System.out.println("Все спорткары с сегментами:");
         for (SportCar car : cars) {
-            System.out.println(car.toString());
+            System.out.println(car);
         }
 
+        System.out.println("\nПолный отчёт по автопарку:");
+        distributionService.printFullReport(cars);
 
         System.out.println("\nФильтр: спорткары класса SPORT");
         for (SportCar car : sportCars) {
             System.out.printf("%s %s — Цена: $%,.2f, Л.с.: %d%n",
                     car.getManufacturer(), car.getModel(), car.getPrice(), car.getHorsepower());
+        }
+
+        System.out.println("\nФильтр: автомобили в диапазоне $50K – $200K");
+        List<SportCar> filteredByPrice = filterService.filterByPriceRange(cars, 50000, 200000);
+        for (SportCar car : filteredByPrice) {
+            System.out.println(car);
+        }
+
+
+        System.out.println("\nФильтр: автомобили сегмента PREMIUM");
+        List<SportCar> premiumCars = filterService.filterBySegment(cars, Segment.PREMIUM);
+        for (SportCar car : premiumCars) {
+            System.out.println(car);
+        }
+
+
+        System.out.println("\nФильтр: SPORT-класс и сегмент BUDGET");
+        List<SportCar> sportBudgetCars = filterService.filterByClassAndSegment(cars, CarClass.SPORT, Segment.BUDGET);
+        for (SportCar car : sportBudgetCars) {
+            System.out.println(car);
+        }
+
+
+        CarUtils.sortByPrice(cars);
+        System.out.println("\nОтсортировано по цене (возрастание):");
+        for (SportCar car : cars) {
+            System.out.printf("%s %s — $%,.2f%n", car.getManufacturer(), car.getModel(), car.getPrice());
+        }
+
+
+        CarUtils.sortByHorsepowerDesc(cars);
+        System.out.println("\nОтсортировано по мощности (убывание):");
+        for (SportCar car : cars) {
+            System.out.printf("%s %s — %d л.с.%n", car.getManufacturer(), car.getModel(), car.getHorsepower());
+        }
+
+
+        if (cars.size() >= 2) {
+            SportCar a = cars.get(0);
+            SportCar b = cars.get(1);
+            System.out.println("\nСравнение первых двух машин:");
+            System.out.printf("По цене: %s дороже %s: %b%n",
+                    a.getModel(), b.getModel(), CarUtils.compareByPrice(a, b) > 0);
+            System.out.printf("По мощности: %s мощнее %s: %b%n",
+                    a.getModel(), b.getModel(), CarUtils.compareByHorsepower(a, b) > 0);
         }
     }
 }
