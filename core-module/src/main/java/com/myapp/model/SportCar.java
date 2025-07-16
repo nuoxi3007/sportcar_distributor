@@ -1,4 +1,6 @@
-package model;
+package com.myapp.model;
+
+
 
 public class SportCar {
     private String manufacturer;
@@ -17,6 +19,10 @@ public class SportCar {
         this.horsepower = horsepower;
     }
 
+
+    public String toShortString() {
+        return String.format("%s %s — $%,.2f (%s)", manufacturer, model, price, segment);
+    }
 
     public String getManufacturer() {
         return manufacturer;
