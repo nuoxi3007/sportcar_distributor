@@ -18,7 +18,6 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- Добавляем версию Log4j в свойства -->
         <log4j.version>2.20.0</log4j.version>
     </properties>
 
@@ -37,7 +36,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <!-- Добавляем общие зависимости для всех модулей -->
+
     <dependencies>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
