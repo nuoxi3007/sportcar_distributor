@@ -1,7 +1,7 @@
-package service;
+package com.myapp.service;
 
-import model.Segment;
-import model.SportCar;
+import com.myapp.model.Segment;
+import com.myapp.model.SportCar;
 import java.util.List;
 
 public class DistributionService {

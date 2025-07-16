@@ -1,7 +1,7 @@
-package util;
+package com.myapp.util;
 
-import model.CarClass;
-import model.SportCar;
+import com.myapp.model.CarClass;
+import com.myapp.model.SportCar;
 
 import java.util.ArrayList;
 import java.util.Comparator;
