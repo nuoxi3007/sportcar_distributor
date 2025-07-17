@@ -26,10 +26,19 @@ public class CarFilterService {
                 .collect(Collectors.toList());
     }
 
-
     public List<SportCar> filterByPriceRange(List<SportCar> cars, double minPrice, double maxPrice) {
         return cars.stream()
                 .filter(car -> car.getPrice() >= minPrice && car.getPrice() <= maxPrice)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<SportCar> filterByManufacturer(List<SportCar> cars, String manufacturer) {
+        if (manufacturer == null || manufacturer.trim().isEmpty()) {
+            return List.of();
+        }
+        return cars.stream()
+                .filter(car -> car.getManufacturer().equalsIgnoreCase(manufacturer))
                 .collect(Collectors.toList());
     }
 }
