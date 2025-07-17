@@ -1,8 +1,8 @@
-package service;
+package com.myapp.service;
 
-import model.CarClass;
-import model.Segment;
-import model.SportCar;
+import com.myapp.model.CarClass;
+import com.myapp.model.Segment;
+import com.myapp.model.SportCar;
 import java.util.List;
 import java.util.stream.Collectors;
 

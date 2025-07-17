@@ -111,23 +111,25 @@ class CarFilterServiceTest {
     @Test
     @DisplayName("Должен фильтровать автомобили по производителю (без учета регистра)")
     void filterByManufacturer_shouldReturnCorrectCars() {
-         List<SportCar> porscheCars = carFilterService.filterByManufacturer(testCars, "Porsche");
-         assertNotNull(porscheCars);
-         assertEquals(1, porscheCars.size());
-         assertTrue(porscheCars.stream().allMatch(car -> car.getManufacturer().equals("Porsche")));
+        List<SportCar> porscheCars = carFilterService.filterByManufacturer(testCars, "Porsche");
+        assertNotNull(porscheCars);
+        assertEquals(1, porscheCars.size());
+        assertTrue(porscheCars.stream().allMatch(car -> car.getManufacturer().equals("Porsche")));
 
 
-         List<SportCar> bmwCars = carFilterService.filterByManufacturer(testCars, "bmw");
-         assertNotNull(bmwCars);
-         assertEquals(1, bmwCars.size());
-         assertTrue(bmwCars.stream().allMatch(car -> car.getManufacturer().equals("BMW")));
+        List<SportCar> bmwCars = carFilterService.filterByManufacturer(testCars, "bmw");
+        assertNotNull(bmwCars);
+        assertEquals(1, bmwCars.size());
+        assertTrue(bmwCars.stream().allMatch(car -> car.getManufacturer().equals("BMW")));
     }
 
     @Test
     @DisplayName("Должен возвращать пустой список, если нет автомобилей, соответствующих производителю")
     void filterByManufacturer_shouldReturnEmptyListIfNoMatch() {
         List<SportCar> nonExistentCars = carFilterService.filterByManufacturer(testCars, "Honda");
-         assertNotNull(nonExistentCars);
-         assertTrue(nonExistentCars.isEmpty());
+        assertNotNull(nonExistentCars);
+        assertTrue(nonExistentCars.isEmpty());
     }
+
+
 }

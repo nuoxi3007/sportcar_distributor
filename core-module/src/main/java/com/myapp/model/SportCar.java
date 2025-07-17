@@ -1,4 +1,4 @@
-package model;
+package com.myapp.model;
 
 public class SportCar {
     private String manufacturer;
