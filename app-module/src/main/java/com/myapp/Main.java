@@ -1,11 +1,11 @@
 package com.myapp;
 
-import model.CarClass;
-import model.SportCar;
-import model.Segment;
-import service.CarFilterService;
-import service.DistributionService;
-import util.CarUtils;
+import com.myapp.model.CarClass;
+import com.myapp.model.SportCar;
+import com.myapp.model.Segment;
+import com.myapp.service.CarFilterService;
+import com.myapp.service.DistributionService;
+import com.myapp.util.CarUtils;
 
 
 import java.util.List;
